@@ -12,3 +12,4 @@ filkatalogen `\bin\Debug\net6.0`, i Git Bash:
 # Hemtentamen 15-18 november
 
 Instruktioner på [Moodle](http://moodle.molk.se/mod/assign/view.php?id=3796).
+# dtp15_todolist
