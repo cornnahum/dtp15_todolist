@@ -105,27 +105,26 @@
         public static void PrintHelp()
         {
             Console.WriteLine("Kommandon:");
-            Console.WriteLine("hjälp    lista denna hjälp");
-            Console.WriteLine("lista    lista att-göra-listan");
-            Console.WriteLine("sluta    spara att-göra-listan och sluta");
-            Console.WriteLine("ny       ny uppgift");
-            Console.WriteLine("beskriv  active uppgifter|status|prioritet|namn|beskrivning");
-            Console.WriteLine("spara    spara uppgifterna");
-            Console.WriteLine("ladda    ladda listan todo.lis|active|ready|waiting|");
+            Console.WriteLine("hjälp       | lista denna hjälp");
+            Console.WriteLine("lista       | lista att-göra-listan");
+            Console.WriteLine("lista allt  | lista att-göra-listan");
+            Console.WriteLine("sluta       | spara att-göra-listan och sluta");
+            Console.WriteLine("ny          | Createa new task");
+            Console.WriteLine("beskriv     | list all Active tasks, status, priority, name and description");
+            Console.WriteLine("spara       | spara data");
+            Console.WriteLine("ladda       | ladda todo list");
         }
         internal static void AddNewItem()
         {
-            string name = MyIO.ReadCommand("Uppgiftens Namn: ");
+            string name = MyIO.ReadCommand("Uppgiftens namn: ");
             int priority = Int32.Parse(MyIO.ReadCommand("Prioritet: "));
-            string descr = MyIO.ReadCommand("Beskrivining: ");
+            string descr = MyIO.ReadCommand("Beskrivning: ");
             TodoItem t = new TodoItem(priority, name);
             t.taskDescription = descr;
             list.Add(t);
         }
-
         internal static void ListAllActive()
         {
-            //list all Active tasks, status, priority, name and description
             PrintHeadOrFoot(true, true);
             foreach (TodoItem item in list)
             {
@@ -138,8 +137,6 @@
         }
         internal static void SaveData()
         {
-            string writeToFile = "";
-
             string todoFileName = "todo.lis";
             using (StreamWriter writer = new StreamWriter(todoFileName))
             {
@@ -158,7 +155,6 @@
                 }
             }
         }
-
         internal static void LoadData(string command)
         {
             string[] arr = command.Split(' ');
