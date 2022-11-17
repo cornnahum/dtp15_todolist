@@ -109,8 +109,8 @@
             Console.WriteLine("lista       | lista att-göra-listan");
             Console.WriteLine("lista allt  | lista att-göra-listan");
             Console.WriteLine("sluta       | spara att-göra-listan och sluta");
-            Console.WriteLine("ny          | Createa new task");
-            Console.WriteLine("beskriv     | list all Active tasks, status, priority, name and description");
+            Console.WriteLine("ny          | Skapa ny uppgift");
+            Console.WriteLine("beskriv     | lista alla aktiva uppgifter, status, prioritet, namn och beskrivning");
             Console.WriteLine("spara       | spara data");
             Console.WriteLine("ladda       | ladda todo list");
         }
