@@ -19,10 +19,8 @@ namespace dtp15_todolist
         {
             switch (status)
             {
-                case Active: return "aktiv";
-                case Waiting: return "väntande";
-                case Ready: return "avklarad";
-                case Klar: return "klar";
+                case Active: return "aktiv";   case Waiting: return "väntande";
+                case Ready: return "avklarad"; case Klar: return "klar";
                 default: return "(felaktig)";
             }
         }
@@ -32,10 +30,8 @@ namespace dtp15_todolist
             public string task, taskDescription;
             public TodoItem(int priority, string task)
             {
-                this.status = Active;
-                this.status = Klar;
-                this.priority = priority;
-                this.task = task;
+                this.status = Active;      this.status = Klar;
+                this.priority = priority;  this.task = task;
                 this.taskDescription = "";
             }
             public TodoItem(string todoLine)
@@ -50,10 +46,8 @@ namespace dtp15_todolist
             {
                 string statusString = StatusToString(status);
                 Console.Write($"|{statusString,-12}|{priority,-6}|{task,-20}|");
-                if (verbose)
-                    Console.WriteLine($"{taskDescription,-40}|");
-                else
-                    Console.WriteLine();
+                if (verbose) Console.WriteLine($"{taskDescription,-40}|");
+                else Console.WriteLine();
             }
         }
         public static void ReadListFromFile()
@@ -80,32 +74,20 @@ namespace dtp15_todolist
                 Console.Write("|status      |prio  |namn                |");
                 if (verbose)
                     Console.WriteLine("beskrivning                             |");
-                else
-                    Console.WriteLine();
+                else Console.WriteLine();
             }
             Console.Write("|------------|------|--------------------|");
             if (verbose)
                 Console.WriteLine("----------------------------------------|");
-            else
-                Console.WriteLine();
+            else Console.WriteLine();
         }
-        private static void PrintHead(bool verbose)
-        {
-            PrintHeadOrFoot(head: true, verbose);
-        }
-        private static void PrintFoot(bool verbose)
-        {
-            PrintHeadOrFoot(head: false, verbose);
-        }
-        public static void PrintTodoList(bool verbose = false)
-        {
-            PrintHead(verbose);
-            foreach (TodoItem item in list)
-            {
-                item.Print(verbose);
-            }
-            PrintFoot(verbose);
-        }
+        private static void PrintHead(bool verbose){
+            PrintHeadOrFoot(head: true, verbose);}
+        private static void PrintFoot(bool verbose){PrintHeadOrFoot(head: false, verbose);}
+        public static void PrintTodoList(bool verbose = false){
+            PrintHead(verbose); foreach (TodoItem item in list)
+            {item.Print(verbose);}
+            PrintFoot(verbose);}
         public static void PrintHelp()
         {
             Console.WriteLine("Kommandon:");
@@ -128,20 +110,13 @@ namespace dtp15_todolist
             t.taskDescription = descr;
             list.Add(t);
         }
-        internal static void ListAllActive()
-        {
-            PrintHeadOrFoot(true, true);
-            foreach (TodoItem item in list)
-            {
-                if (item.status == 1){item.Print(true);}
+        internal static void ListAllActive(){PrintHeadOrFoot(true, true);
+            foreach (TodoItem item in list){if (item.status == 1){item.Print(true);}
             }
             PrintFoot(true);
         }
-        internal static void ListaActive(bool verbose = false)
-        {
-            PrintHeadOrFoot(true, true);
-            foreach (TodoItem item in list)
-            {
+        internal static void ListaActive(bool verbose = false){
+            PrintHeadOrFoot(true, true); foreach (TodoItem item in list){
                 if (item.status == 1) { item.Print(false); }
             }
             PrintFoot(true);
@@ -173,11 +148,8 @@ namespace dtp15_todolist
         }
         internal static void LoadData(string command)
         {
-            string[] arr = command.Split(' ');
-            foreach (TodoItem item in list)
-            {
-                if (MyIO.Equals(item.task, arr[1]))
-                {
+            string[] arr = command.Split(' '); foreach (TodoItem item in list){
+                if (MyIO.Equals(item.task, arr[1])){
                     if (MyIO.Equals(arr[0], "aktivera")){item.status = 1;}
                     else if (MyIO.Equals(arr[0], "klar")){item.priority = 4;}
                     else if (MyIO.Equals(arr[0], "vänta")){item.status = 2;}
@@ -198,9 +170,7 @@ namespace dtp15_todolist
                 command = MyIO.ReadCommand("> ");
                 if (MyIO.Equals(command, "hjälp")) { Todo.PrintHelp(); }
                 else if (MyIO.Equals(command, "sluta")) { Console.WriteLine("Hej då!"); break; }
-                else if (MyIO.Equals(command, "lista"))
-                {
-
+                else if (MyIO.Equals(command, "lista")){
                     if (MyIO.HasArgument(command, "allt"))
                         Todo.PrintTodoList(verbose: true);
                     else
@@ -222,16 +192,13 @@ namespace dtp15_todolist
     }
     class MyIO
     {
-        static public string ReadCommand(string prompt)
-        {
-            Console.Write(prompt); return Console.ReadLine();
-        }
+        static public string ReadCommand(string prompt){
+            Console.Write(prompt); return Console.ReadLine();}
         static public bool Equals(string rawCommand, string expected)
         {
             string command = rawCommand.Trim();
             if (command == "") return false;
-            else
-            {
+            else{
                 string[] cwords = command.Split(' ');
                 if (cwords[0] == expected) return true;
             }
@@ -241,8 +208,7 @@ namespace dtp15_todolist
         {
             string command = rawCommand.Trim();
             if (command == "")return false;
-            else
-            {
+            else{
                 string[] cwords = command.Split(' ');
                 if (cwords.Length < 2) return false;
                 if (cwords[1] == expected) return true;
