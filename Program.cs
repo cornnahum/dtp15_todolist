@@ -116,10 +116,10 @@ namespace dtp15_todolist
             PrintFoot(true);
         }
         internal static void ListaActive(bool verbose = false){
-            PrintHeadOrFoot(true, true); foreach (TodoItem item in list){
+            PrintHeadOrFoot(true, false); foreach (TodoItem item in list){
                 if (item.status == 1) { item.Print(false); }
             }
-            PrintFoot(true);
+            PrintFoot(false);
         }
         internal static void SaveData()
         {
